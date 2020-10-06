@@ -247,7 +247,7 @@ The `assignment` router takes the 'username' (which is the student in this case)
 
 Ok, so now let's look at how the `frontend` app works.
 
-## 2 - Build the `frontend` application
+## 3 - Build the `frontend` application
 
 Before you build the `frontend`, ensure that the following dependencies are found in your `frontend/package.json` file:
 
