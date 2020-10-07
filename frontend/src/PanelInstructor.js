@@ -42,9 +42,7 @@ function App() {
         student: studentName,
       });
       setStudentName('');
-      let response2 = await axios.post('http://localhost:8080/following', {
-        username: username,
-      });
+      let response2 = await axios.get('http://localhost:8080/following', { params: { username: username } });
       setIntructorFollowing(response2.data);
 
     } catch (e) {

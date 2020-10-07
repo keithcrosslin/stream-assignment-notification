@@ -184,13 +184,12 @@ The `follow` router takes the 'username' (which is the instructor) and the `stud
 
 ### following endpoint
 
-<!-- https://gist.github.com/keithcrosslin/870d0235e7c47345ccb6bb151d0f429e -->
+<!-- https://gist.github.com/keithcrosslin/e7b3ac1c504ae8d04226a8bcdb4147ca -->
 
 ```jsx
-// backend/routes/index.js:37-51
+// backend/routes/index.js:53-67
 router.get("/following", async (req, res) => {
   try {
-    console.log(req.query.username);
     const username = req.query.username.replace(/\s/g, "_").toLowerCase();
     const notificationFeed = client.feed("notification", username);
 
@@ -341,10 +340,10 @@ const register = async (e) => {
 
 ### follow const function
 
-<!-- https://gist.github.com/keithcrosslin/a1ccaccd35a3e33c141df4c5fa77374c -->
+<!-- https://gist.github.com/keithcrosslin/a78b23bf0f7e524483d3a46e2f3dd0f8 -->
 
 ```jsx
-// frontend/src/PanelInstructor.js 36-53
+// frontend/src/PanelInstructor.js 36-51
 const follow = async (e) => {
   try {
     e.preventDefault();
@@ -354,8 +353,8 @@ const follow = async (e) => {
       student: studentName,
     });
     setStudentName("");
-    let response2 = await axios.post("http://localhost:8080/following", {
-      username: username,
+    let response2 = await axios.get("http://localhost:8080/following", {
+      params: { username: username },
     });
     setIntructorFollowing(response2.data);
   } catch (e) {

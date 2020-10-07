@@ -52,7 +52,6 @@ router.post('/follow', async (req, res) => {
 
 router.get('/following', async (req, res) => {
   try {
-    console.log(req.query.username);
     const username = req.query.username.replace(/\s/g, '_').toLowerCase();
     const notificationFeed = client.feed('notification', username);
 
