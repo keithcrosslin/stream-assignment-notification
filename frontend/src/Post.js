@@ -2,12 +2,12 @@ import React from 'react';
 
 const Post = ((props) => {
   return (
-    <tr>
-      <td>{props.activity.instructor}</td>
-      <td>{props.activity.class}</td>
-      <td>{props.activity.title}</td>
-      <td>{props.activity.time}</td>
-    </tr>
+    <div className="row">
+      <div className="col">{props.activity.instructor}</div>
+      <div className="col">{props.activity.class}</div>
+      <div className="col">{props.activity.title}</div>
+      <div className="col">{props.activity.time}</div>
+    </div>
   );
 });
 

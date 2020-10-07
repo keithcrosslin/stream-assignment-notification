@@ -126,7 +126,7 @@ One of the files in the `backend` is `routes/index.js`. This is where you will f
 - **following**: generates a list of students that the instructor is following.
 - **assignment**: adds the assignment details to the student's assignment feed.
 
-### registation endpoint
+### registration endpoint
 
 <!-- https://gist.github.com/keithcrosslin/403c011b0ba0a8135a9be5c4d5ee9ebb -->
 
@@ -403,7 +403,7 @@ The instructor panel has three user interface views, which are controlled by the
 <!-- https://gist.github.com/keithcrosslin/ab9dcba8220d09ed165b452a933ffa04 -->
 
 ```jsx
-// frontend/src/PanelInstructor.js 73-93
+// frontend/src/PanelInstructor.js 70-87
 function join() {
   return (
     <div className="container">
@@ -428,10 +428,10 @@ function join() {
 
 ### notification function
 
-<!-- https://gist.github.com/keithcrosslin/fc0a45005f8e6c57b1ec79fd717fd0a8 -->
+<!-- https://gist.github.com/keithcrosslin/80f280c57ae0441729e263d940e9e2e7 -->
 
 ```jsx
-// frontend/src/PanelInstructor.js 95-129
+// frontend/src/PanelInstructor.js 92-124
 function notification() {
   return (
     <div className="container">
@@ -452,23 +452,23 @@ function notification() {
           appId={streamClient.appId}
         >
           <div className="stream-app">
-            <h3 className="app-title">Assignment Notifications</h3>
+            <h5 className="app-title">Assignment Notifications</h5>
           </div>
-          <Table striped bordered hover size="sm">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Number of posted assignments</th>
-                <th>Number of students uploading assignments</th>
-              </tr>
-            </thead>
+          <div className="section">
+            <div className="header">
+              <div className="col">Date</div>
+              <div className="col">Number of posted assignments</div>
+              <div className="col">
+                Number of students uploading assignments
+              </div>
+            </div>
             <FlatFeed
               feedGroup="notification"
               notify
               options={{ limit: 10 }}
               Activity={PostNotification}
             />
-          </Table>
+          </div>
         </StreamApp>
       </div>
     </div>
@@ -481,7 +481,7 @@ function notification() {
 <!-- https://gist.github.com/keithcrosslin/1ea0e594515f2cb142c81b52e7401e52 -->
 
 ```jsx
-// frontend/src/PanelInstructor.js 131-154
+// frontend/src/PanelInstructor.js 126-149
 function followPage() {
   return (
     <div className="container">
@@ -512,7 +512,7 @@ function followPage() {
 }
 ```
 
-Finally, the end of `PanelInstructor.js` has three if statments to evaluate the state of `instructorState` and call the appropriate function, as follows:
+Finally, the end of `PanelInstructor.js` has three if statements to evaluate the state of `instructorState` and call the appropriate function, as follows:
 
 ### end of PanelInstructor.js
 
@@ -546,7 +546,7 @@ The `register` `const function` sends a request to the `backend` to register the
 <!-- https://gist.github.com/keithcrosslin/c319c58ccad9bc2225e266b5bb9463fb -->
 
 ```jsx
-// frontend/src/PanelStudent.js 20-33
+// frontend/src/PanelStudent.js 19-32
 const register = async (e) => {
   try {
     e.preventDefault();
@@ -572,7 +572,7 @@ const register = async (e) => {
 <!-- https://gist.github.com/keithcrosslin/2cc61f762d85a62ffdb08569b7f35056 -->
 
 ```jsx
-// frontend/src/PanelStudent.js 36-53
+// frontend/src/PanelStudent.js 35-52
 const assignmentAdd = async (e) => {
   try {
     e.preventDefault();
@@ -597,7 +597,7 @@ const assignmentAdd = async (e) => {
 <!-- https://gist.github.com/keithcrosslin/1426e64c24d4cd8650dca9404fa92ec5 -->
 
 ```jsx
-// frontend/src/PanelStudent.js 55-59
+// frontend/src/PanelStudent.js 54-58
 const logout = (e) => {
   setUsername("");
   setStudentStreamCredentials(null);
@@ -612,7 +612,7 @@ The student panel has two user interface views, which are controlled by the `rea
 <!-- https://gist.github.com/keithcrosslin/d87d66cf3552931ba7a915a59b056b0b -->
 
 ```jsx
-// frontend/src/PanelStudent.js 61-82
+// frontend/src/PanelStudent.js 60-79
 function join() {
   return (
     <div className="container">
@@ -627,7 +627,6 @@ function join() {
             placeholder="Student Name"
             required
           />
-
           <button type="submit">Log in</button>
         </div>
       </form>
@@ -638,11 +637,11 @@ function join() {
 
 ### assignment function
 
-<!-- https://gist.github.com/keithcrosslin/b5f72ecc0a939a2bb319862bb1eef6d4 -->
+<!-- https://gist.github.com/keithcrosslin/ece37a4b857235c784f1194be9f771ab -->
 
 ```jsx
-// frontend/src/PanelStudent.js 84-157
-function assignment()
+// frontend/src/PanelStudent.js 82-152
+function assignment() {
   return (
     <div className="container">
       <div className="button">
@@ -699,24 +698,22 @@ function assignment()
           appId={studentStreamCredentials.appId}
         >
           <div className="stream-app">
-            <h3 className="app-title">Previously Added Assignments</h3>
+            <h5 className="app-title">Previously Added Assignments</h5>
           </div>
-          <Table striped bordered hover size="sm">
-            <thead>
-              <tr>
-                <th>Instructor</th>
-                <th>Class</th>
-                <th>Title</th>
-                <th>Time</th>
-              </tr>
-            </thead>
+          <div className="section">
+            <div className="header">
+              <div className="col">Instructor</div>
+              <div className="col">Class</div>
+              <div className="col">Title</div>
+              <div className="col">Time</div>
+            </div>
             <FlatFeed
               feedGroup="assignment"
               notify
               options={{ limit: 10 }}
               Activity={Post}
             />
-          </Table>
+          </div>
         </StreamApp>
       </div>
     </div>

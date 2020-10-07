@@ -7,7 +7,6 @@ import 'react-activity-feed/dist/index.es.css';
 import axios from 'axios';
 import PostNotification from './PostNotification';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Table } from 'react-bootstrap';
 
 function App() {
   const [instructorState, setInstructorState] = useState('JOIN');
@@ -103,23 +102,21 @@ function App() {
           <p>Professor <strong>{username}</strong>, here are your assignment Notifications:</p>
           <StreamApp apiKey={streamClient.apiKey} token={streamClient.token} appId={streamClient.appId}>
             <div className="stream-app">
-              <h3 className="app-title">Assignment Notifications</h3>
+              <h5 className="app-title">Assignment Notifications</h5>
             </div>
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Number of posted assignments</th>
-                  <th>Number of students uploading assignments</th>
-                </tr>
-              </thead>
+            <div className="section">
+              <div className="header">
+                <div className="col">Date</div>
+                <div className="col">Number of posted assignments</div>
+                <div className="col">Number of students uploading assignments</div>
+              </div>
               <FlatFeed
                 feedGroup="notification"
                 notify
                 options={{ limit: 10 }}
                 Activity={PostNotification}
               />
-            </Table>
+            </div>
           </StreamApp>
         </div>
       </div >

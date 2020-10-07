@@ -6,7 +6,6 @@ import {
 import axios from 'axios';
 import Post from './Post';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Table, button } from 'react-bootstrap';
 
 function App() {
   const [studentState, setStudentState] = useState('JOIN');
@@ -72,12 +71,10 @@ function App() {
               placeholder="Student Name"
               required
             />
-
             <button type="submit">Log in</button>
           </div>
         </form>
       </div>
-
     );
   }
 
@@ -131,28 +128,25 @@ function App() {
         <div ref={containerRef}>
           <StreamApp apiKey={studentStreamCredentials.apiKey} token={studentStreamCredentials.token} appId={studentStreamCredentials.appId}>
             <div className="stream-app">
-              <h3 className="app-title">Previously Added Assignments</h3>
+              <h5 className="app-title">Previously Added Assignments</h5>
             </div>
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th>Instructor</th>
-                  <th>Class</th>
-                  <th>Title</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
+            <div className="section">
+              <div className="header">
+                <div className="col">Instructor</div>
+                <div className="col">Class</div>
+                <div className="col">Title</div>
+                <div className="col">Time</div>
+              </div>
               <FlatFeed
                 feedGroup="assignment"
                 notify
                 options={{ limit: 10 }}
                 Activity={Post}
               />
-            </Table>
+            </div>
           </StreamApp>
         </div>
       </div >
-
     );
   }
 
